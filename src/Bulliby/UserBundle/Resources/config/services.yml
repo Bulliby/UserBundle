@@ -1,0 +1,4 @@
+services:
+#    bulliby_user.example:
+#        class: Bulliby\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

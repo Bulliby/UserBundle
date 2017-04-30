@@ -1,0 +1,3 @@
+bulliby_user_homepage:
+    path:     /
+    defaults: { _controller: BullibyUserBundle:Default:index }
