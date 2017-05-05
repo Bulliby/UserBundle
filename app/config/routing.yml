@@ -1,3 +1,8 @@
+familly:
+    resource: "@FamillyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 bulliby_user:
     resource: "@BullibyUserBundle/Resources/config/routing.yml"
     prefix:   /
