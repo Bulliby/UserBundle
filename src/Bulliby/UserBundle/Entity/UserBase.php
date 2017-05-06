@@ -3,7 +3,7 @@
 namespace Bulliby\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validation\Constraints AS Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author Wells Guillaume
@@ -14,10 +14,11 @@ abstract class UserBase
 	/**
 	 * @var string
 	 * @Assert\Length(
-	 *		min = 3,
-	 *      max = 20,
-	 *      minMessage = "Your login must be at least {{ limit }} characters long",
-	 *      maxMessage = "Your login cannot be longer than {{ limit }} characters
+	 *	min=3,
+	 *  max=20,
+	 *  minMessage="Your login must be at least {{ limit }} characters long",
+	 *  maxMessage="Your login cannot be longer than {{ limit }} characters"
+	 *)
 	 * @ORM\Column(name="login", type="string", length=20)
 	 */
 	protected $login;
@@ -25,19 +26,20 @@ abstract class UserBase
 	/**
 	 * @var string
 	 * @Assert\Length(
-	 *		min = 8,
-	 *      max = 20,
-	 *      minMessage = "Your password must be at least {{ limit }} characters long",
-	 *      maxMessage = "Your password cannot be longer than {{ limit }} characters
-	 * @Assert\Regex(
-	 *     pattern="/\d+/",
-	 *     match=false,
-	 *     message="Your password must contain at least one numeric value"
+	 *	min = 8,
+	 *  max = 20,
+	 *  minMessage = "Your password must be at least {{ limit }} characters long",
+	 *  maxMessage = "Your password cannot be longer than {{ limit }} characters"
 	 * )
 	 * @Assert\Regex(
-	 *     pattern="/[^a-zA-Z\d\s:]/",
-	 *     match=flase,
-	 *     message="Your password must contain at least one non-alphanumeric character"
+	 *  pattern="/\d+/",
+	 *  match=false,
+	 *  message="Your password must contain at least one numeric value"
+	 * )
+	 * @Assert\Regex(
+	 *  pattern="/[^a-zA-Z\d\s:]/",
+	 *  match=flase,
+	 *  message="Your password must contain at least one non-alphanumeric character"
 	 * )
 	 * @ORM\Column(name="password", type="string", length=20)
 	 */
