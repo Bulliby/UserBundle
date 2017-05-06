@@ -38,7 +38,7 @@ abstract class UserBase
 	 * )
 	 * @Assert\Regex(
 	 *  pattern="/[^a-zA-Z\d\s:]/",
-	 *  match=flase,
+	 *  match=false,
 	 *  message="Your password must contain at least one non-alphanumeric character"
 	 * )
 	 * @ORM\Column(name="password", type="string", length=20)

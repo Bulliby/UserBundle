@@ -4,6 +4,7 @@ namespace FamillyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Bulliby\UserBundle\Entity\UserBase;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="FamillyBundle\Repository\UserRepository")
  */
-class User
+class User extends UserBase
 {
     /**
      * @var int
