@@ -5,15 +5,16 @@ namespace FamillyBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Bulliby\UserBundle\Form\UserType;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-		$user = $this->get('bulliby.user_manager')->createUser();
-        return $this->render('FamillyBundle:Default:index.html.twig');
+		return $this->render('FamillyBundle:Default:index.html.twig');
     }
 }

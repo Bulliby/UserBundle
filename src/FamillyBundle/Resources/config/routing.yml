@@ -1,0 +1,2 @@
+app:
+    resource: "@BullibyUserBundle/Ressources/config/routing.yml"

@@ -27,8 +27,8 @@ class User extends UserBase
      * @var string
 	 * @Assert\NotBlank()
 	 * @Assert\Regex(
-	 *  pattern="/[a-zA-Z]+/",
-	 *	match=false,
+	 *  pattern="/^[a-zA-Z]+$/",
+	 *	match=true,
 	 *  message="Your name must contain only letters"
 	 * )
 	 * @Assert\Length(
@@ -43,28 +43,17 @@ class User extends UserBase
      * @var string
 	 * @Assert\NotBlank
 	 * @Assert\Regex(
-	 *  pattern="/[a-zA-Z]+/",
-	 *  match=false,
+	 *  pattern="/^[a-zA-Z]+$/",
+	 *  match=true,
 	 *  message="Your surname must contain only letters"
 	 * )
 	 * @Assert\Length(
 	 *  max = 20,
-	 *  maxMessage = "Your name cannot be longer than {{ limit }} characters"
+	 *  maxMessage = "Your surname cannot be longer than {{ limit }} characters"
 	 * )
      * @ORM\Column(name="surname", type="string", length=20)
      */
     private $surname;
-
-    /**
-     * @var \stdClass
-     * @Assert\Image(
-	 * maxSize="2M",
-	 * maxSizeMessage="The picture is too heavy",
-	 * mimeTypesMessage="This seems to not be an image",
-     * )
-     * @ORM\Column(name="picture", type="object", nullable=true)
-     */
-    private $picture;
 
     /**
      * @var \DateTime
@@ -76,6 +65,7 @@ class User extends UserBase
     /**
      * @var string
      *
+	 * @Assert\Email(strict=true, checkMX=true)
      * @ORM\Column(name="email", type="string", length=100, nullable=true, unique=true)
      */
     private $email;
@@ -83,6 +73,16 @@ class User extends UserBase
     /**
      * @var string
      *
+	 * @Assert\NotBlank
+	 * @Assert\Regex(
+	 *  pattern="/^[a-zA-Z]+$/",
+	 *  match=true,
+	 *  message="Your family name must contain only letters"
+	 * )
+	 * @Assert\Length(
+	 *  max = 20,
+	 *  maxMessage = "Your family name cannot be longer than {{ limit }} characters"
+	 * )
      * @ORM\Column(name="familly", type="string", length=20)
      */
     private $familly;
@@ -144,30 +144,6 @@ class User extends UserBase
     public function getSurname()
     {
         return $this->surname;
-    }
-
-    /**
-     * Set picture
-     *
-     * @param \stdClass $picture
-     *
-     * @return User
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return \stdClass
-     */
-    public function getPicture()
-    {
-        return $this->picture;
     }
 
     /**
