@@ -20,7 +20,7 @@ class RegistrationController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid())
 		{
-			$this->get('bulliby.user_manager')->saveCreatedUser($user);	
+			$this->get('bulliby.user_manager')->saveUser($user);	
 			return $this->redirect($this->generateUrl('index'));
 		}
 		return $this->render('BullibyUserBundle:Registration:register.html.twig', [ 

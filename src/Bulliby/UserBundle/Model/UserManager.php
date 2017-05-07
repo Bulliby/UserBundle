@@ -2,19 +2,22 @@
 
 namespace Bulliby\UserBundle\Model;
 
-use Doctrine\ORM\EntityManager;
 use Bulliby\UserBundle\Model\BaseManager;
 use FamillyBundle\Entity\User;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder as Encoder;
+use Bulliby\UserBundle\Event\UserEvent;
+
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface as Dispatcher;
 
 class UserManager extends BaseManager
 {
-	private $encoder;
 
-	public function __construct(EntityManager $em, Encoder $encoder)
+	private $dispatcher;
+
+	public function __construct(EntityManager $em, Dispatcher $dispatcher)
 	{
 		$this->em = $em;
-		$this->encoder = $encoder;
+		$this->dispatcher = $dispatcher;
 	}
 
 	public function getRepository()
@@ -33,10 +36,9 @@ class UserManager extends BaseManager
 		return $user;
 	}
 
-	public function saveCreatedUser(User $user)
+	public function saveUser(User $user)
 	{
-		$encoded = $this->encoder->encodePassword($user, $user->getPassword());
-		$user->setPassword($encoded);
+		$this->dispatcher->dispatch('user.create', new UserEvent($user));
 		$this->persistAndFlush($user);
 	}
 
