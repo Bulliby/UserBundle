@@ -18,7 +18,7 @@ class UserType extends AbstractType
 			->add('birthday', BirthdayType::class)
 			->add('email')
 			->add('familly')
-			->add('login')
+			->add('username')
 			->add('password', PasswordType::class)
 			->add('password2', PasswordType::class, array('mapped' => false, 'label' => false))
             ->add('Register', SubmitType::class)

@@ -5,12 +5,16 @@ namespace Bulliby\UserBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Bulliby\UserBundle\Model\BaseManager;
 use FamillyBundle\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder as Encoder;
 
 class UserManager extends BaseManager
 {
-	public function __construct(EntityManager $em)
+	private $encoder;
+
+	public function __construct(EntityManager $em, Encoder $encoder)
 	{
 		$this->em = $em;
+		$this->encoder = $encoder;
 	}
 
 	public function getRepository()
@@ -29,8 +33,10 @@ class UserManager extends BaseManager
 		return $user;
 	}
 
-	public function saveUser(User $user)
+	public function saveCreatedUser(User $user)
 	{
+		$encoded = $this->encoder->encodePassword($user, $user->getPassword());
+		$user->setPassword($encoded);
 		$this->persistAndFlush($user);
 	}
 
