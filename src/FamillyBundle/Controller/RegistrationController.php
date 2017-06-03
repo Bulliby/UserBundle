@@ -1,11 +1,11 @@
 <?php
 
-namespace Bulliby\UserBundle\Controller;
+namespace FamillyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Bulliby\UserBundle\Form\UserType;
+use FamillyBundle\Form\UserType;
 
 class RegistrationController extends Controller
 {
@@ -23,9 +23,8 @@ class RegistrationController extends Controller
 			$this->get('bulliby.user_manager')->saveUser($user);	
 			return $this->redirect($this->generateUrl('index'));
 		}
-		return $this->render('BullibyUserBundle:Registration:register.html.twig', [ 
+		return $this->render('FamillyBundle:Registration:register.html.twig', [ 
 			'form' => $form->createView()
 			]);
 	}
-
 }

@@ -1,12 +1,14 @@
 <?php
 
-namespace Bulliby\UserBundle\Form;
+namespace FamillyBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+
+use Bulliby\UserBundle\Form\MyPasswordType;
 
 class UserType extends AbstractType
 {
@@ -19,8 +21,7 @@ class UserType extends AbstractType
 			->add('email')
 			->add('familly')
 			->add('username')
-			->add('password', PasswordType::class)
-			->add('password2', PasswordType::class, array('mapped' => false, 'label' => false))
+			->add('password', MyPasswordType::class, array('label' => false))
             ->add('Register', SubmitType::class)
         ;
     }
