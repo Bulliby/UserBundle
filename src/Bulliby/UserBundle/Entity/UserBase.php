@@ -43,7 +43,7 @@ abstract class UserBase
 	 *  match=true,
 	 *  message="Your password must contain at least one non-alphanumeric character"
 	 * )
-	 * @ORM\Column(name="password", type="string", length=20)
+	 * @ORM\Column(name="password", type="string", length=255)
 	 */
 	protected $password;
 

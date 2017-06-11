@@ -24,10 +24,9 @@ class PasswordService
 	 * @param Object $em
 	 *
 	 */
-	public function __construct(EntityManager $em, $path)
+	public function __construct(EntityManager $em)
 	{
 		$this->em =  $em;
-		var_dump($path);
 	}
 
 	/**

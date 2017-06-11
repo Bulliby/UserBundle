@@ -11,4 +11,4 @@ services:
 
     bulliby.password:
         class: Bulliby\UserBundle\Services\PasswordService
-        arguments: ["@doctrine.orm.entity_manager", "%path%"]
+        arguments: ["@doctrine.orm.entity_manager"]
