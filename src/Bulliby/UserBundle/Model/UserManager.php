@@ -20,14 +20,14 @@ class UserManager extends BaseManager
 		$this->dispatcher = $dispatcher;
 	}
 
-	public function getRepository()
+	private function getRepository()
 	{
 		return $this->em->getRepository('FamillyBundle:User');
 	}
 
-	public function loadUser($userId)
+	public function loadUser(array $userDetails)
 	{
-		return $this->getRepository()->findOneBy(array('id' => $userId));
+		return $this->getRepository()->findOneBy($userDetails);
 	}
 
 	public function createUser()
@@ -41,5 +41,4 @@ class UserManager extends BaseManager
 		$this->dispatcher->dispatch('user.create', new UserEvent($user));
 		$this->persistAndFlush($user);
 	}
-
 }

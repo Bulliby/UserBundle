@@ -3,15 +3,15 @@
 namespace Bulliby\UserBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 use Bulliby\UserBundle\Event\UserEvent;
+use Bulliby\UserBundle\Services\PasswordService;
 
 class UserNotificationListener implements EventSubscriberInterface
 {
   private $encoder;
 
-  public function __construct(Encoder $encoder)
+  public function __construct(PasswordService $encoder)
   {
     $this->encoder = $encoder;
   }
@@ -19,7 +19,7 @@ class UserNotificationListener implements EventSubscriberInterface
   public function onUserCreate(UserEvent $event)
   {
 	$user = $event->getUser();
-	$encoded = $this->encoder->encodePassword($user, $user->getPassword());
+	$encoded = $this->encoder->hashPassword($user->getPassword());
 	$user->setPassword($encoded);
   }
 

@@ -21,7 +21,7 @@ class LoginType extends AbstractType
 						'min' => 3,
 						'max' => 20,
 						'minMessage' => "Your login must be at least {{ limit }} characters long",
-						'maxMessage' => "Your login cannot be longer than {{ limit }} characters",
+						'maxMessage' => "Your login cannot be longer than {{ limit }} characters"
 					]),
 					new NotBlank()
 				]

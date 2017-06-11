@@ -5,6 +5,10 @@ services:
 
     bulliby.user_notifications:
         class: Bulliby\UserBundle\EventListener\UserNotificationListener
-        arguments: ["@security.password_encoder"]
+        arguments: ["@bulliby.password"]
         tags:
             - { name: kernel.event_subscriber }
+
+    bulliby.password:
+        class: Bulliby\UserBundle\Services\PasswordService
+        arguments: ["@doctrine.orm.entity_manager", "%path%"]

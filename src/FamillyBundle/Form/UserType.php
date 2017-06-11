@@ -21,7 +21,11 @@ class UserType extends AbstractType
 			->add('email')
 			->add('familly')
 			->add('username')
-			->add('password', MyPasswordType::class, array('label' => false))
+			->add('password', MyPasswordType::class, array(
+				'data_class' => UserType::class,
+				'label' => false
+			))
+			//->add('password', MyPasswordType::class, array('label' => false))
             ->add('Register', SubmitType::class)
         ;
     }

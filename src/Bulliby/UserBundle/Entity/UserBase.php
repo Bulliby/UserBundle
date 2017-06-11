@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @author Wells Guillaume
  * @ORM\MappedSuperclass
  */
-abstract class UserBase implements UserInterface
+abstract class UserBase
 {
 	/**
 	 * @var string
@@ -47,17 +47,6 @@ abstract class UserBase implements UserInterface
 	 */
 	protected $password;
 
-	/**
-	 * @var array
-	 * @ORM\Column(name="roles", type="array", nullable=false)
-	 */
-	protected $roles;
-
-	/**
-	 * @var string|null
-	 * @ORM\Column(name="salt", type="string", nullable=true)
-	 */
-	protected $salt;
 
 	/**
 	 * Get id
@@ -117,39 +106,5 @@ abstract class UserBase implements UserInterface
 	public function getPassword()
 	{
 		return $this->password;
-	}
-
-	/**
-	 * Get roles
-	 * UserInterface Required
-	 * Always return User for the moment
-	 *
-	 * @return array
-	 */
-    public function getRoles()
-	{
-		return array('ROLE_USER');
-	}
-
-	/**
-	 * Get salt
-	 * UserInterface Required
-	 *
-	 * @return string
-	 */
-    public function getSalt()
-	{
-		return $this->salt;
-	}
-
-	/**
-	 * Remove sensitive data
-	 * UserInterface Required
-	 * Useless for me
-	 *
-	 */
-    public function eraseCredentials()
-	{
-		;
 	}
 }
