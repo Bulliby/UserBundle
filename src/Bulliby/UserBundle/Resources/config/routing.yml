@@ -1,0 +1,7 @@
+bulliby_user_homepage:
+    path:     /
+    defaults: { _controller: BullibyUserBundle:Default:index }
+
+bulliby_user_registration:
+    path:     /register
+    defaults: { _controller: BullibyUserBundle:Registration:register }

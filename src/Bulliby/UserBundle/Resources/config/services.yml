@@ -1,0 +1,14 @@
+services:
+    bulliby.user_manager:
+        class: Bulliby\UserBundle\Model\UserManager
+        arguments: ["@doctrine.orm.entity_manager", "@event_dispatcher"]
+
+    bulliby.user_notifications:
+        class: Bulliby\UserBundle\EventListener\UserNotificationListener
+        arguments: ["@bulliby.password"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    bulliby.password:
+        class: Bulliby\UserBundle\Services\PasswordService
+        arguments: ["@doctrine.orm.entity_manager"]

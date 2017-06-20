@@ -6,7 +6,10 @@ security:
     providers:
         in_memory:
             memory: ~
-
+    encoders:
+        FamillyBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
