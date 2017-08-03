@@ -1,14 +1,11 @@
+parameters:
+
 services:
-    bulliby.user_manager:
-        class: Bulliby\UserBundle\Model\UserManager
-        arguments: ["@doctrine.orm.entity_manager", "@event_dispatcher"]
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    bulliby.user_notifications:
-        class: Bulliby\UserBundle\EventListener\UserNotificationListener
-        arguments: ["@bulliby.password"]
-        tags:
-            - { name: kernel.event_subscriber }
-
-    bulliby.password:
-        class: Bulliby\UserBundle\Services\PasswordService
-        arguments: ["@doctrine.orm.entity_manager"]
+    Bulliby\UserBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Repository,Tests,Controller,DependencyInjection,Event,Form,Resources}'

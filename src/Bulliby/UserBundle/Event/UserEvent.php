@@ -4,7 +4,7 @@ namespace Bulliby\UserBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-use FamillyBundle\Entity\User as User;
+use Bulliby\UserBundle\Entity\UserBase as User;
 
 class UserEvent extends Event
 {

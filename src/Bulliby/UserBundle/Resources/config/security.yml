@@ -1,0 +1,23 @@
+security:
+    providers:
+        login:
+            entity:
+                class: AppBundle:User
+                property: email
+
+    encoders:
+         AppBundle\Entity\User:    
+            algorithm: bcrypt
+            cost: 12
+
+    firewalls:
+        login:
+            pattern: ^/
+            provider: login
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+            guard:
+                authenticators:
+                    - Bulliby\UserBundle\Security\FormLoginAuthenticator

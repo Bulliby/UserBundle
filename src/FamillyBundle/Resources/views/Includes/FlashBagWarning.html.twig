@@ -1,7 +1,0 @@
-{% if app.session.flashBag.has('warning') %}
-        <div class="alert alert-success">
-            {% for msg in app.session.flashBag.get('warning') %}
-                {{ msg }}
-            {% endfor %}
-        </div>
-{% endif %}

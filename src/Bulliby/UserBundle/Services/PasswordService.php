@@ -15,18 +15,21 @@
 namespace Bulliby\UserBundle\Services;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PasswordService
 {
 	private $em;
+    private $encoder;
 
 	/**
 	 * @param Object $em
 	 *
 	 */
-	public function __construct(EntityManager $em)
+	public function __construct(EntityManager $em, UserPasswordEncoderInterface $encoder)
 	{
 		$this->em =  $em;
+        $this->encoder = $encoder;
 	}
 
 	/**
@@ -36,9 +39,10 @@ class PasswordService
 	 *
 	 * @return string
 	 */
-	public function hashPassword($plainPassword)
+	public function hashPassword($plainPassword, $user)
 	{
-		return (password_hash($plainPassword, PASSWORD_DEFAULT));
+        $encoded = $this->encoder->encodePassword($user, $plainPassword);
+		return $encoded;
 	}
 
 	/**

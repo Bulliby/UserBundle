@@ -5,13 +5,23 @@ namespace Bulliby\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @author Wells Guillaume
  * @ORM\MappedSuperclass
  */
-abstract class UserBase
+abstract class UserBase implements UserInterface, \Serializable, EquatableInterface
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
 	/**
 	 * @var string
 	 * UserInterface Required
@@ -47,6 +57,23 @@ abstract class UserBase
 	 */
 	protected $password;
 
+	/**
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string")
+     */
+    private $salt;
+
+
+    public function __construct()
+    {
+        $this->salt = uniqid("", true);
+    }
 
 	/**
 	 * Get id
@@ -71,6 +98,7 @@ abstract class UserBase
 
 		return $this;
 	}
+
 
 	/**
 	 * Get username
@@ -107,4 +135,47 @@ abstract class UserBase
 	{
 		return $this->password;
 	}
+
+	/**
+	 * Get salt
+	 * UserInterface Required
+	 *
+	 * @return string
+	 */
+	public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+        ) = unserialize($serialized);
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        return $this->id === $user->getId();
+    }
+
+	public function eraseCredentials()
+    {
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
 }

@@ -3,7 +3,7 @@
 namespace Bulliby\UserBundle\Model;
 
 use Bulliby\UserBundle\Model\BaseManager;
-use FamillyBundle\Entity\User;
+use Bulliby\UserBundle\Entity\User;
 use Bulliby\UserBundle\Event\UserEvent;
 
 use Doctrine\ORM\EntityManager;
@@ -22,7 +22,7 @@ class UserManager extends BaseManager
 
 	private function getRepository()
 	{
-		return $this->em->getRepository('FamillyBundle:User');
+		return $this->em->getRepository('BullibyUserBundle:User');
 	}
 
 	public function loadUser(array $userDetails)
