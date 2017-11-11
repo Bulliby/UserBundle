@@ -9,3 +9,8 @@ services:
     Bulliby\UserBundle\:
         resource: '../../*'
         exclude: '../../{Entity,Repository,Tests,Controller,DependencyInjection,Event,Form,Resources}'
+
+    Bulliby\UserBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']

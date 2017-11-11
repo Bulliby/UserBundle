@@ -3,8 +3,9 @@
 namespace Bulliby\UserBundle\Model;
 
 use Bulliby\UserBundle\Model\BaseManager;
-use Bulliby\UserBundle\Entity\User;
 use Bulliby\UserBundle\Event\UserEvent;
+//TODO: Dans la configuration du Bundle bind User a la class du projet parent
+use AppBundle\Entity\User;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as Dispatcher;
