@@ -3,7 +3,7 @@
     "description": "A User Bundle: One more",
     "autoload": {
         "psr-4" : {
-            "Bulliby\\UserBundle\\" : ""
+            "Bulliby\\UserBundle\\" : "src/Bulliby/UserBundle"
         }
     }
 }
