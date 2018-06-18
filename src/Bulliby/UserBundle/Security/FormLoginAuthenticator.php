@@ -82,8 +82,8 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $session = new Session();
-        $session->getFlashBag()->add('success', 'You are now logged-in');
+        //$session = new Session();
+        //$session->getFlashBag()->add('success', 'You are now logged-in');//TODO need to reactive this
 		$this->dispatcher->dispatch('user.logged', new UserEvent($token->getUser()));
         return new RedirectResponse($this->router->generate('homepage'));
     }
